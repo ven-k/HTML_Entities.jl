@@ -8,6 +8,7 @@ HE = HTML_Entities
 
 @testset "HTML_Entities" begin
 @testset "lookupname" begin
+    @test HE.lookupname(SubString("My name is Spock", 12)) == ""
     @test HE.lookupname("foobar") == ""
     @test HE.lookupname("nle")    == "\u2270"
     @test HE.lookupname("Pscr")   == "\U1d4ab"
@@ -15,7 +16,9 @@ HE = HTML_Entities
 end
 
 @testset "matches" begin
+    @test isempty(HE.matches(""))
     @test isempty(HE.matches("\u201f"))
+    @test isempty(EE.matches(SubString("This is \u201f", 9)))
     for (chrs, exp) in (("\u2270", ["nle", "nleq"]),
                         ("\U1d4ab", ["Pscr"]),
                         ("\U1d51e", ["afr"]),
@@ -28,6 +31,7 @@ end
 
 @testset "longestmatches" begin
     @test isempty(HE.longestmatches("\u201f abcd"))
+    @test isempty(EE.longestmatches(SubString("This is \U201f abcd", 9)))
     for (chrs, exp) in (("\u2270 abcd", ["nle", "nleq"]),
                         ("\U1d4ab abcd", ["Pscr"]),
                         ("\u2268\ufe00 silly", ["lvertneqq", "lvnE"]))
@@ -39,6 +43,7 @@ end
 
 @testset "completions" begin
     @test isempty(HE.completions("ScottPaulJones"))
+    @test isempty(EE.completions(SubString("My name is Scott", 12)))
     for (chrs, exp) in (("and", ["and", "andand", "andd", "andslope", "andv"]),
                         ("um", ["umacr", "uml"]))
         res = HE.completions(chrs)
