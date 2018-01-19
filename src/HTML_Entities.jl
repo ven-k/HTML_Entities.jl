@@ -29,7 +29,7 @@ struct HTML_Table{T} <: AbstractEntityTable
 end
 
 function __init__()
-    const global _tab =
+    global _tab =
         HTML_Table(StrTables.load(joinpath(Pkg.dir("HTML_Entities"), "data", "html.dat"))...)
     nothing
 end
