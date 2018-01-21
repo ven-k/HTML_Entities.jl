@@ -7,47 +7,54 @@ using HTML_Entities
 
 HE = HTML_Entities
 
+he_matchchar(ch)       = HE.matchchar(HE.default, ch)
+he_lookupname(nam)     = HE.lookupname(HE.default, nam)
+he_longestmatches(str) = HE.longestmatches(HE.default, str)
+he_matches(str)        = HE.matches(HE.default, str)
+he_completions(str)    = HE.completions(HE.default, str)
+
+
 @testset "HTML_Entities" begin
 @testset "lookupname" begin
-    @test HE.lookupname(SubString("My name is Spock", 12)) == ""
-    @test HE.lookupname("foobar") == ""
-    @test HE.lookupname("nle")    == "\u2270"
-    @test HE.lookupname("Pscr")   == "\U1d4ab"
-    @test HE.lookupname("lvnE")   == "\u2268\ufe00"
+    @test he_lookupname(SubString("My name is Spock", 12)) == ""
+    @test he_lookupname("foobar") == ""
+    @test he_lookupname("nle")    == "\u2270"
+    @test he_lookupname("Pscr")   == "\U1d4ab"
+    @test he_lookupname("lvnE")   == "\u2268\ufe00"
 end
 
 @testset "matches" begin
-    @test isempty(HE.matches(""))
-    @test isempty(HE.matches("\u201f"))
-    @test isempty(HE.matches(SubString("This is \u201f", 9)))
+    @test isempty(he_matches(""))
+    @test isempty(he_matches("\u201f"))
+    @test isempty(he_matches(SubString("This is \u201f", 9)))
     for (chrs, exp) in (("\u2270", ["nle", "nleq"]),
                         ("\U1d4ab", ["Pscr"]),
                         ("\U1d51e", ["afr"]),
                         ("\u2268\ufe00", ["lvertneqq", "lvnE"]))
-        res = HE.matches(chrs)
+        res = he_matches(chrs)
         @test length(res) >= length(exp)
         @test intersect(res, exp) == exp
     end
 end
 
 @testset "longestmatches" begin
-    @test isempty(HE.longestmatches("\u201f abcd"))
-    @test isempty(HE.longestmatches(SubString("This is \U201f abcd", 9)))
+    @test isempty(he_longestmatches("\u201f abcd"))
+    @test isempty(he_longestmatches(SubString("This is \U201f abcd", 9)))
     for (chrs, exp) in (("\u2270 abcd", ["nle", "nleq"]),
                         ("\U1d4ab abcd", ["Pscr"]),
                         ("\u2268\ufe00 silly", ["lvertneqq", "lvnE"]))
-        res = HE.longestmatches(chrs)
+        res = he_longestmatches(chrs)
         @test length(res) >= length(exp)
         @test intersect(res, exp) == exp
     end
 end
 
 @testset "completions" begin
-    @test isempty(HE.completions("ScottPaulJones"))
-    @test isempty(HE.completions(SubString("My name is Scott", 12)))
+    @test isempty(he_completions("ScottPaulJones"))
+    @test isempty(he_completions(SubString("My name is Scott", 12)))
     for (chrs, exp) in (("and", ["and", "andand", "andd", "andslope", "andv"]),
                         ("um", ["umacr", "uml"]))
-        res = HE.completions(chrs)
+        res = he_completions(chrs)
         @test length(res) >= length(exp)
         @test intersect(res, exp) == exp
     end
