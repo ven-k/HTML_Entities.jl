@@ -1,0 +1,9 @@
+desc = "Entities from HTML data tables"
+keywords = ["Entities", "HTML"]
+license = "MIT"
+name = "HTML_Entities"
+uuid = "7693890a-d069-55fe-a829-b4a6d304f0ee"
+repo = "https://github.com/JuliaString/HTML_Entities.jl.git"
+deps = ["Pkg", "StrTables", "Test"]
+git-tree-sha1 = "c280baea170e18648b1d6455ad0b7206c1bfe830"
+version = "0.2.2"
