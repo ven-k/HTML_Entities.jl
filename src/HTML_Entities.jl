@@ -30,7 +30,7 @@ end
 
 function __init__()
     global default =
-        HTML_Table(StrTables.load(joinpath(pkg_dir("HTML_Entities"), "data", "html.dat"))...)
+        HTML_Table(StrTables.load(joinpath(@__DIR__, "../data", "html.dat"))...)
     nothing
 end
 end # module HTML_Entities

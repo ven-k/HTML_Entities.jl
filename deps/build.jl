@@ -15,7 +15,7 @@ include(inpname)
 const disp = [false]
 
 const fname = "html.dat"
-const datapath = joinpath(pkg_dir("HTML_Entities"), "data")
+const datapath = "../data"
 
 const empty_str = ""
 
