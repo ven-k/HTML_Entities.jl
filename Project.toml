@@ -1,12 +1,12 @@
-authors = ["ScottPJones <scottjones@alum.mit.edu>"]
+name = "HTML_Entities"
 desc = "Entities from HTML data tables"
+authors = ["ScottPJones <scottjones@alum.mit.edu>"]
 keywords = ["Entities", "HTML"]
 license = "MIT"
-name = "HTML_Entities"
 repo-rev = ""
 repo-url = "https://github.com/JuliaString/HTML_Entities.jl.git"
 uuid = "7693890a-d069-55fe-a829-b4a6d304f0ee"
-version = "0.2.2"
+version = "0.2.3"
 
 [deps]
 Pkg = "fe1c5a76-5840-53d2-82f9-288dd83ce2ce"
