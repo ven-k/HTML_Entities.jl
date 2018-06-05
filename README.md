@@ -15,8 +15,8 @@
 [travis-s-img]: https://travis-ci.org/JuliaString/HTML_Entities.jl.svg
 [travis-m-img]: https://travis-ci.org/JuliaString/HTML_Entities.jl.svg?branch=master
 
-[app-s-url]:    https://ci.appveyor.com/project/ScottPJones/html_entities-jl
-[app-m-url]:    https://ci.appveyor.com/project/ScottPJones/html_entities-jl/branch/master
+[app-s-url]:    https://ci.appveyor.com/project/ScottPJones/html-entities-jl
+[app-m-url]:    https://ci.appveyor.com/project/ScottPJones/html-entities-jl/branch/master
 [app-s-img]:    https://ci.appveyor.com/api/projects/status/xp05kd5mamt92yhj?svg=true
 [app-m-img]:    https://ci.appveyor.com/api/projects/status/xp05kd5mamt92yhj/branch/master?svg=true
 
