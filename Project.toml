@@ -4,6 +4,7 @@ authors = ["ScottPJones <scottjones@alum.mit.edu>"]
 keywords = ["Entities", "HTML"]
 license = "MIT"
 uuid = "7693890a-d069-55fe-a829-b4a6d304f0ee"
+version = "0.2.6"
 
 [deps]
 Pkg  = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
