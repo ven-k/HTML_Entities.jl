@@ -84,15 +84,19 @@ function make_tables()
      vec16, ind16, vec32, ind32, vec2c, ind2c)
 end
 
-println("Creating tables")
-tup = nothing
-try
-    global tup
-    tup = make_tables()
-catch ex
-    println(sprint(showerror, ex, catch_backtrace()))
-end
 savfile = joinpath(datapath, fname)
-println("Saving tables to ", savfile)
-StrTables.save(savfile, tup)
-println("Done")
+if isfile(savfile)
+    println("Tables already exist")
+else
+    println("Creating tables")
+    tup = nothing
+    try
+        global tup
+        tup = make_tables()
+    catch ex
+        println(sprint(showerror, ex, catch_backtrace()))
+    end
+    println("Saving tables to ", savfile)
+    StrTables.save(savfile, tup)
+    println("Done")
+end
