@@ -1,6 +1,20 @@
 ---
 kind: pipeline
-name: linux - arm - Julia 1.0
+name: linux - arm64 - Julia 1.5
+
+platform:
+  os: linux
+  arch: arm64
+
+steps:
+- name: build
+  image: julia:1.5
+  commands:
+  - "julia --project=. --check-bounds=yes --color=yes -e 'using InteractiveUtils; versioninfo(verbose=true); using Pkg; Pkg.build(); Pkg.test(coverage=true)'"
+
+---
+kind: pipeline
+name: linux - arm - Julia 1.6
 
 platform:
   os: linux
@@ -14,7 +28,7 @@ steps:
 
 ---
 kind: pipeline
-name: linux - arm64 - Julia 1.0
+name: linux - arm64 - Julia 1.6
 
 platform:
   os: linux
@@ -26,16 +40,3 @@ steps:
   commands:
   - "julia --project=. --check-bounds=yes --color=yes -e 'using InteractiveUtils; versioninfo(verbose=true); using Pkg; Pkg.build(); Pkg.test(coverage=true)'"
 
----
-kind: pipeline
-name: linux - arm64 - Julia 1.5
-
-platform:
-  os: linux
-  arch: arm64
-
-steps:
-- name: build
-  image: julia:1.5
-  commands:
-  - "julia --project=. --check-bounds=yes --color=yes -e 'using InteractiveUtils; versioninfo(verbose=true); using Pkg; Pkg.build(); Pkg.test(coverage=true)'"
