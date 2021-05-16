@@ -15,7 +15,7 @@ include(inpname)
 const disp = [false]
 
 const fname = "html.dat"
-const datapath = "../data"
+const datapath = joinpath(@__DIR__, "..", "data")
 
 const empty_str = ""
 
@@ -89,14 +89,13 @@ if isfile(savfile)
     println("Tables already exist")
 else
     println("Creating tables")
-    tup = nothing
     try
-        global tup
         tup = make_tables()
+        println("Saving tables to ", savfile)
+        StrTables.save(savfile, tup)
+        println("Done")
     catch ex
+        println("Error creating HTML tables")
         println(sprint(showerror, ex, catch_backtrace()))
     end
-    println("Saving tables to ", savfile)
-    StrTables.save(savfile, tup)
-    println("Done")
 end
